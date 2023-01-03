@@ -143,6 +143,22 @@
             background-color: rgba(134, 184, 88, 0.6); 
         }
 
+        .delete-btn {
+            background-color: rgba(255, 70, 70, 1.0); 
+            color: #343434;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute; /* for relative positioning */
+            top: 21px;
+            right: 90px;
+        }
+
+        .delete-btn:hover {
+            background-color: rgba(255, 70, 70, 0.6); 
+        }
+
+        /* Footer */
         .footer {
             color: #FFFFFF;
             background-color: #343434;
@@ -215,6 +231,8 @@
                     $headline =  'Deine Kontakte';
                 } else if($_GET['page'] == 'addContact') {
                     $headline = 'Kontakt hinzufügen';
+                } else if($_GET['page'] == 'delete'){
+                    $headline = 'Kontakt gelöscht';
                 } else if($_GET['page'] == 'intro') {
                     $headline = 'Über Dich';
                 } else if($_GET['page'] == 'articles') {
@@ -228,12 +246,21 @@
                 echo '<h1>' . $headline . '</h1>';
 
                 //show and display page content according to ?page
-                if($_GET['page'] == 'contacts') {
+                if($_GET['page'] == 'delete') {
+                    //TODO: show which contact was deleted
+                    echo '<p>Dein Kontakt wurde gelöscht.</p>';
+                    //get index
+                    $index = $_GET['delete'];
+                    //delete index from array
+                    unset($contacts[$index]);
+                    //save again/update textfile
+                    file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT));
+                } else if($_GET['page'] == 'contacts') {
                     echo "
                         <p>Auf dieser Seite hast du einen Überblick über deine <b>Kontakte</b>.</p>
                     ";
 
-                    foreach($contacts as $row) {
+                    foreach($contacts as $index=>$row) {
                         $name = $row['name'];
                         $number = $row['number'];
 
@@ -244,6 +271,7 @@
                                     $number
                                 </p>
                                 <a class='call-btn' href='tel:$number'>Anrufen</a>
+                                <a class='delete-btn' href='?page=delete&delete=$index'>Löschen</a>
                             </div>
                         ";
                     }
