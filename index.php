@@ -103,12 +103,14 @@
         }
 
         /* Contact Section */
-        .profile-card {
+        .contact-card {
             border-radius: 8px;
             background-color: rgba(0,0,0,0.05); /* light gray */
+            height: 55px;
             padding: 10px;
+            padding-left: 64px;
             margin-bottom: 12px;
-            display: flex;
+            position: relative; /* position div elemente relative to div container */
         }
 
         .profile-picture {
@@ -117,6 +119,28 @@
             height: 45px;
             width: 45px;
             margin-right: 12px;
+            position: absolute; /* for relative positioning */
+            left: 8px;
+        }
+
+        .contact-information {
+            position: absolute; /* for relative positioning */
+            top: -6px;
+        }
+
+        .call-btn {
+            background-color: rgba(134, 184, 88, 1.0); 
+            color: #343434;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute; /* for relative positioning */
+            top: 21px;
+            right: 10px;
+        }
+
+        .call-btn:hover {
+            background-color: rgba(134, 184, 88, 0.6); 
         }
 
         .footer {
@@ -214,14 +238,12 @@
                         $number = $row['number'];
 
                         echo "
-                            <div class='profile-card'>
-                                <div>
-                                    <img class='profile-picture' src='img/profile-picture.png'><br/>
-                                </div>
-                                <div>
-                                    <b>$name</b><br/>
+                            <div class='contact-card'>
+                                <img class='profile-picture' src='img/profile-picture.png'><br/>                                
+                                <p class='contact-information'><b>$name</b><br/>
                                     $number
-                                </div>
+                                </p>
+                                <a class='call-btn' href='tel:$number'>Anrufen</a>
                             </div>
                         ";
                     }
