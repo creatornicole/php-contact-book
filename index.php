@@ -102,6 +102,23 @@
             margin: 150px 30px 45px 0;
         }
 
+        /* Contact Section */
+        .profile-card {
+            border-radius: 8px;
+            background-color: rgba(0,0,0,0.05); /* light gray */
+            padding: 10px;
+            margin-bottom: 12px;
+            display: flex;
+        }
+
+        .profile-picture {
+            border-radius: 100%;
+            border: 2px solid white;
+            height: 45px;
+            width: 45px;
+            margin-right: 12px;
+        }
+
         .footer {
             color: #FFFFFF;
             background-color: #343434;
@@ -151,7 +168,7 @@
                     //First Step: Get Text from Textfile
                     $text = file_get_contents('contacts.txt', true);
                     //Second Step: Paste Text to Textfile, Note: has to be converted back to text first
-                    $contacts = json_decode($text); 
+                    $contacts = json_decode($text, true); //true defines transformation to array
                 }
 
                 //check if variables are set
@@ -186,11 +203,29 @@
                 //display headline
                 echo '<h1>' . $headline . '</h1>';
 
-                //show and display paragraphs according to ?page
+                //show and display page content according to ?page
                 if($_GET['page'] == 'contacts') {
                     echo "
                         <p>Auf dieser Seite hast du einen Überblick über deine <b>Kontakte</b>.</p>
                     ";
+
+                    foreach($contacts as $row) {
+                        $name = $row['name'];
+                        $number = $row['number'];
+
+                        echo "
+                            <div class='profile-card'>
+                                <div>
+                                    <img class='profile-picture' src='img/profile-picture.png'><br/>
+                                </div>
+                                <div>
+                                    <b>$name</b><br/>
+                                    $number
+                                </div>
+                            </div>
+                        ";
+                    }
+
                 } else if($_GET['page'] == 'addContact') {
                     echo "
                         <p>Über diese Seite kannst du ganz einfach einen neuen Kontakt hinzufügen.</p>
