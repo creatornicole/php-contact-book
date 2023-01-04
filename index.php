@@ -158,6 +158,11 @@
             background-color: rgba(255, 70, 70, 0.6); 
         }
 
+        /* Delete Call Out */
+        .delete-call-out {
+            color: red;
+        }
+
         /* Footer */
         .footer {
             color: #FFFFFF;
@@ -230,8 +235,17 @@
                 if(($_GET['page'] == 'contacts') && isset($_GET['delete'])) {
                     //get index
                     $index = $_GET['delete'];
+                    //get name and number of deleted contact
+                    $delContact = null;
+                    $delContactNum = null;
+                    foreach($contacts as $i=>$row) {
+                        if($i == $index) {
+                            $delContact = $row['name'];
+                            $delContactNum = $row['number'];
+                        }
+                    }
                     //display which contact was deleted
-                    echo '<p>Der Kontakt wurde gelöscht.</p>';
+                    echo '<p class="delete-call-out">Der Kontakt ' . $delContact . ' (' . $delContactNum . ') wurde gelöscht.</p>';
                     //delete index fromm array
                     unset($contacts[$index]);
                     //save again/update textfile
