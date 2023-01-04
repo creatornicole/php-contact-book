@@ -226,6 +226,18 @@
                     file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT)); 
                 }
 
+                //check if delete request on contacts page exists
+                if(($_GET['page'] == 'contacts') && isset($_GET['delete'])) {
+                    //get index
+                    $index = $_GET['delete'];
+                    //display which contact was deleted
+                    echo '<p>Der Kontakt wurde gelöscht.</p>';
+                    //delete index fromm array
+                    unset($contacts[$index]);
+                    //save again/update textfile
+                    file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT));                        
+                }
+
                 //show headline according to ?page
                 if($_GET['page'] == 'contacts') {
                     $headline =  'Deine Kontakte';
@@ -246,16 +258,7 @@
                 echo '<h1>' . $headline . '</h1>';
 
                 //show and display page content according to ?page
-                if($_GET['page'] == 'delete') {
-                    //TODO: show which contact was deleted
-                    echo '<p>Dein Kontakt wurde gelöscht.</p>';
-                    //get index
-                    $index = $_GET['delete'];
-                    //delete index from array
-                    unset($contacts[$index]);
-                    //save again/update textfile
-                    file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT));
-                } else if($_GET['page'] == 'contacts') {
+                if($_GET['page'] == 'contacts') {
                     echo "
                         <p>Auf dieser Seite hast du einen Überblick über deine <b>Kontakte</b>.</p>
                     ";
@@ -271,7 +274,7 @@
                                     $number
                                 </p>
                                 <a class='call-btn' href='tel:$number'>Anrufen</a>
-                                <a class='delete-btn' href='?page=delete&delete=$index'>Löschen</a>
+                                <a class='delete-btn' href='?page=contacts&delete=$index'>Löschen</a>
                             </div>
                         ";
                     }
