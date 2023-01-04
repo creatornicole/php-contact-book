@@ -190,8 +190,6 @@
         <!-- Menu Container -->
         <div class="menu">
             <a href="index.php?page=start"><img src="img/home.svg"> Start</a>
-            <a href="index.php?page=intro">Über Mich</a>
-            <a href="index.php?page=articles">Artikelübersicht</a>
             <a href="index.php?page=contacts"><img src="img/contactbook.svg"> Kontakte</a>
             <a href="index.php?page=addContact"><img src="img/add.svg"> Kontakt hinzufügen</a>
             <a href="index.php?page=impressum"><img src="img/policy.svg"> Impressum</a>
@@ -259,12 +257,7 @@
                     $headline = 'Kontakt hinzufügen';
                 } else if($_GET['page'] == 'delete'){
                     $headline = 'Kontakt gelöscht';
-                } else if($_GET['page'] == 'intro') {
-                    $headline = 'Über Dich';
-                } else if($_GET['page'] == 'articles') {
-                    $headline = 'Deine Artikel';
-                }
-                else if($_GET['page'] == 'impressum') {
+                } else if($_GET['page'] == 'impressum') {
                     $headline =  'Impressum';
                 }
 
@@ -292,7 +285,6 @@
                             </div>
                         ";
                     }
-
                 } else if($_GET['page'] == 'addContact') {
                     echo "
                         <p>Über diese Seite kannst du ganz einfach einen neuen Kontakt hinzufügen.</p>
@@ -306,15 +298,6 @@
                             </div>
                             <button type='submit'>Absenden</button>
                         </form>
-                    ";
-                } else if($_GET['page'] == 'intro') {
-                    echo "
-                        <p>Hier findest Du alle gesammelten Informationen über dich.</p>
-                        <p>Füge neue über den + Button hinzu.</p>
-                    ";
-                } else if($_GET['page'] == 'articles') {
-                    echo "
-                        <p>All deine herausgesuchten Artikel in einer Übersicth.</p>
                     ";
                 } else if($_GET['page'] == 'impressum') {
                     echo "
