@@ -177,6 +177,32 @@
             color: red;
         }
 
+        /* Contact Form */
+        input {
+            font-family: 'Poppins', sans-serif;
+            width: 250px;
+            border: 0.5px solid rgba(52,52,52,0.3);
+            border-radius: 3px;
+            padding: 7px 5px;
+            margin-bottom: 10px;
+        }
+
+        button[type=submit] {
+            background-color: rgba(134, 184, 88, 1.0); 
+            color: #343434;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            margin-top: 4px;
+        }
+
+        button[type=submit]:hover {
+            background-color: rgba(134, 184, 88, 0.6); 
+            cursor: pointer;
+        }
+
         /* Footer */
         .footer {
             color: #FFFFFF;
