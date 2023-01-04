@@ -71,6 +71,7 @@
             height: 100vh; /* whole display height */ 
             width: 20%;
             padding-top: 180px;
+            padding-left: 17px;
             margin-right: 32px;
         }
 
@@ -237,6 +238,9 @@
                     ];
                     //push new table entry to contacts array
                     array_push($contacts, $newContact);
+                    //sort array by ascending name
+                    $columns = array_column($contacts, 'name');
+                    array_multisort($columns, SORT_ASC, $contacts);
                     //paste contacts array into textfile
                     //json_encode -> transfer array into text
                     file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT)); 
@@ -259,6 +263,9 @@
                     echo '<p class="delete-call-out">Der Kontakt ' . $delContact . ' (' . $delContactNum . ') wurde gelöscht.</p>';
                     //delete index fromm array
                     unset($contacts[$index]);
+                    //sort array by ascending name
+                    $columns = array_column($contacts, 'name');
+                    array_multisort($columns, SORT_ASC, $contacts);
                     //save again/update textfile
                     file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT));                        
                 }
