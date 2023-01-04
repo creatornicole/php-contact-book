@@ -158,6 +158,19 @@
             background-color: rgba(255, 70, 70, 0.6); 
         }
 
+        .add-btn {
+            background-color: rgba(134, 184, 88, 1.0); 
+            color: #343434;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 5px;
+            margin-left: 15px;
+        }
+
+        .add-btn:hover {
+            background-color: rgba(134, 184, 88, 0.6); 
+        }
+
         /* Delete Call Out */
         .delete-call-out {
             color: red;
@@ -267,7 +280,8 @@
                 //show and display page content according to ?page
                 if($_GET['page'] == 'contacts') {
                     echo "
-                        <p>Auf dieser Seite hast du einen Überblick über deine <b>Kontakte</b>.</p>
+                        <p>Auf dieser Seite hast du einen Überblick über deine <b>Kontakte</b>. <a class='add-btn' href='?page=addContact'>Hinzufügen</a></p>
+
                     ";
 
                     foreach($contacts as $index=>$row) {
